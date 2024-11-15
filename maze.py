@@ -1,4 +1,5 @@
-from visuals import Cell, Point
+from visuals import Point, Line
+from cell import Cell
 from time import sleep
 
 class Maze:
@@ -16,15 +17,11 @@ class Maze:
         
 
     def _create_cells(self):
-        x = self.x1
         for i in range(self.num_cols):
             column = []
-            y = self.y1
             for j in range(self.num_rows):
-                column.append(Cell(Point(x, y), Point(x + self.cell_size_x, y + self.cell_size_y)))
-                y += self.cell_size_y
+                column.append(Cell(self.window))
             self.cells.append(column)
-            x += self.cell_size_x
 
         for i in range(self.num_cols):
             for j in range(self.num_rows):
@@ -32,10 +29,18 @@ class Maze:
     
 
     def _draw_cell(self, i, j):
-        self.win.draw_cell(self.cells[i][j], "black")
+        if self.window is None:
+            return
+        x1 = self.x1 + (i * self.cell_size_x)
+        y1 = self.y1 + (j * self.cell_size_y)
+        x2 = self.x1 + self.cell_size_x
+        y2 = self.y1 + self.cell_size_y
+        self.cells[i][j].draw(x1, y1, x2, y2)
         self._animate()
     
 
     def _animate(self):
-        self.win.redraw()
-        sleep(0.05)
+        if self.window is None:
+            return
+        self.window.redraw()
+        sleep(0.03)
