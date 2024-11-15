@@ -1,7 +1,7 @@
 from visuals import Line, Point
 
 class Cell:
-    def __init__(self, win):
+    def __init__(self, win=None):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
@@ -43,6 +43,8 @@ class Cell:
         x1, y1 = self.find_centre()
         x2, y2 = to_cell.find_centre()
 
+        if self._win is None:
+            return
         line = Line(Point(x1, y1), Point(x2, y2))
         self._win.draw_line(line, fill_colour)
 
