@@ -36,9 +36,6 @@ class Point():
         self.x = x
         self.y = y
 
-    ## x=0 is the left limit
-    ## y=0 is the top limit
-
 
 class Line():
     def __init__(self, point_1, point_2):
