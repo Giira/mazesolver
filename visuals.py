@@ -29,6 +29,14 @@ class Window():
     
     def draw_line(self, Line, fill_colour="black"):
         Line.draw(self.canvas, fill_colour)
+    
+
+    def draw_h_line(self, Line, fill_colour="black"):
+        Line.draw_h(self.canvas, fill_colour)
+
+    
+    def draw_v_line(self, Line, fill_colour="black"):
+        Line.draw_v(self.canvas, fill_colour)
 
 
 class Point():
@@ -42,7 +50,23 @@ class Line():
         self.point_1 = point_1
         self.point_2 = point_2
 
+        self.h_points = [self.point_1.x +1, self.point_1.y, self.point_1.x +3, self.point_1.y -2, 
+                       self.point_2.x -3, self.point_2.y -2, self.point_2.x -1, self.point_2.y, 
+                       self.point_2.x -3, self.point_2.y +2, self.point_1.x +3, self.point_1.y +2]
+        
+        self.v_points = [self.point_1.x, self.point_1.y +1, self.point_1.x +2, self.point_1.y +3, 
+                       self.point_2.x +2, self.point_2.y -3, self.point_2.x, self.point_2.y -1, 
+                       self.point_2.x -2, self.point_2.y -3, self.point_1.x -2, self.point_1.y +3]
+
 
     def draw(self, Canvas, fill_colour="black"):
         Canvas.create_line(self.point_1.x, self.point_1.y, self.point_2.x, self.point_2.y, fill=fill_colour, width=2)
+        
+
+    def draw_h(self, Canvas, fill_colour="black"):
+        Canvas.create_polygon(self.h_points, outline=fill_colour, fill="white", width=2)
+
+    
+    def draw_v(self, Canvas, fill_colour="black"):
+        Canvas.create_polygon(self.v_points, outline=fill_colour, fill="white", width=2)
 

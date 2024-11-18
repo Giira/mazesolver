@@ -3,8 +3,8 @@ from maze import Maze
 
 def main():
     margin = 50
-    num_cols = 40
-    num_rows = 25
+    num_cols = 14
+    num_rows = 10
     cell_width = 50
     cell_height = 50
     screen_x = margin * 2 + num_cols * cell_width
